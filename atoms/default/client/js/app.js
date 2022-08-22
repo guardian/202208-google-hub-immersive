@@ -68,7 +68,7 @@ const Header = () => {
                     
                     <div className="client">
                         <p>Paid for by <br />
-                            <a href={content.logoLink} target="_blank">
+                            <a href="#" target="_blank">
                                 <img src={`${assetsPath}/google_logo.png`} width="150" />
                             </a>
                         </p>
