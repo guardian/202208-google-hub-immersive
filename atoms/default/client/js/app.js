@@ -259,7 +259,7 @@ const MainBody = ({children}) => {
 
                 <div className="h-line"></div>
                 <div className="boxed">
-                    <h1><span style={{fontSize: '125%'}}>Helpful by nature:</span> the power of connection through community </h1>
+                    <h1><span style={{fontSize: '125%'}}>Helpful by nature:</span> <br /> the power of connection through community </h1>
                     <p>When we care for our community, helping them is a natural extension of who we are. </p>
                     <p>Australia’s First Nations women are inspirational leaders from whom we can all learn a lot about community, and the importance of support, mentorship and being helpful - by nature.</p>
 

@@ -793,7 +793,7 @@ section.footer {
     //   grid-template-rows: 1fr 2fr;
     }
     .desc {
-      height: 110px;
+      height: 130px;
       display: flex;
       padding: 1rem;
       border-radius: 15px;
@@ -822,6 +822,7 @@ section.footer {
   padding: 1rem 0;
   margin: auto;
   max-width: 38rem;
+  text-align: center;
 }
 
 .h-line {
