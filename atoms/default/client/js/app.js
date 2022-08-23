@@ -11,7 +11,7 @@ import {ScrollTrigger} from "gsap/ScrollTrigger";
 import Brother from "./Brother";
 import store, { ACTION_SET_SECTIONS, fetchData } from "./store";
 import {SwitchTransition, Transition, TransitionGroup} from "react-transition-group";
-import { Logo, PlayIcon, ScrollDown, TapIcon} from "./Icons";
+import { LeftIcon, Logo, PlayIcon, RightIcon, ScrollDown, TapIcon} from "./Icons";
 import {Provider, useSelector, useDispatch} from "react-redux";
 import { useEffect, useRef, useState } from "preact/hooks";
 import {SmoothProvider} from "react-smooth-scrolling";
@@ -174,57 +174,71 @@ const BgVidSection = ({src, title}) =>
 const MainBody = ({children}) => {
     const ref = useRef();
     const content = useSelector(s=>s.content);
-    const store = useSelector(s=>s);    
+    const store = useSelector(s=>s);
+    const refSlider = useRef();
 
     const slides = [
         {
             key: 1,
-            content: <div><strong>Meaningful change</strong></div>,
+            content: <div><p><strong>Meaningful change</strong></p></div>,
             bgColor: '#EEC990',
             cta: 'https://www.theguardian.com/google-helpful-by-nature/2022/aug/17/first-nations-women-are-powerful-inspirational-leaders-and-they-are-all-around-us'
         },
         {
             key: 2,
-            content:  <div><strong>Women save <nobr>women’s lives</nobr></strong><br/>Yarn with Ashlee Donohue and Bronwyn Penrith</div>,
+            content:  <div><p><strong>Women save <nobr>women’s lives</nobr></strong><br/>Yarn with Ashlee Donohue and Bronwyn Penrith</p></div>,
             bgColor: '#FBD396',
             cta: ''
         },
         {
             key: 3,
-            content: <div><strong>Spark that black joy</strong><br/>Yarn with Jessica Johnson and Jarin Baigent</div>,
+            content: <div><p><strong>Spark that black joy</strong><br/>Yarn with Jessica Johnson and Jarin Baigent</p></div>,
             bgColor: '#FD9C42E5',
             cta: ''
         },
         {
             key: 4,
-            content: <div><strong>Support is transgenerational</strong><br/>Yarn with Naomi and Jeanni Moran</div>,
+            content: <div><p><strong>Support is transgenerational</strong><br/>Yarn with Naomi and Jeanni Moran</p></div>,
             bgColor: '#E9A47DE5',
             cta: ''
         },
         {
             key: 5,
-            content: <div><strong>Breaking the chain</strong><br/>Yarn with Heidi Bradshaw and Annette Toomey </div>,
+            content: <div><p><strong>Breaking the chain</strong><br/>Yarn with Heidi Bradshaw and Annette Toomey </p></div>,
             bgColor: '#E98A7DE5',
             cta: ''
         },
         {
             key: 6,
-            content: <div><strong>Listening, Learning, and Partnering.</strong></div>,
+            content: <div><p><strong>Listening, Learning, and Partnering.</strong></p></div>,
             bgColor: '#FE7528E5',
             cta: ''
         },
     ];
 
+    const NavButton = ({onClick, icon}) => {
+        return (
+            <div><a href="#" onClick={(e)=>{e.preventDefault();onClick()}}><i>{icon}</i></a></div>
+        )
+    }
+
 
     const settings = {
-        dots: false,
+        dots: true,
         infinite: true,
         speed: 500,
         slidesToShow: 4,
         slidesToScroll: 1,
         swipeToSlide: true,
-        autoplay: true,
+        // autoplay: true,
         arrows: false,
+        appendDots: dots => (
+            <div>
+                <NavButton onClick={()=>refSlider.current.slickPrev()} icon={<LeftIcon />} />
+              <ul style={{ margin: "0px" }}> {dots} </ul>
+                <NavButton onClick={()=>refSlider.current.slickNext()} icon={<RightIcon />}  />
+            </div>
+          ),        
         responsive: [
             // {
             //   breakpoint: 1024,
@@ -236,17 +250,21 @@ const MainBody = ({children}) => {
             //   }
             // },
             {
-              breakpoint: 940,
+              breakpoint: 980,
+              settings: {
+                slidesToShow: 3,
+              }
+            },
+            {
+              breakpoint: 780,
               settings: {
                 slidesToShow: 2,
-                slidesToScroll: 2,
               }
             },
             {
               breakpoint: 480,
               settings: {
                 slidesToShow: 1,
-                slidesToScroll: 1
               }
             }
           ]        
@@ -270,15 +288,15 @@ const MainBody = ({children}) => {
                 </div>
                 
                 <div className="slider">
-                        <Slider {...settings}>
+                        <Slider {...settings} ref={refSlider}>
                     {slides.map(v=>
                         <div className={`slide ${v.cta ? '': 'inactive'}`}>
                             <div className="slide-panel">
-                                <div className="desc" style={{backgroundColor: v.bgColor}}>
-                                    <a href={v.cta} target="_blank">{v.content}</a>
-                                </div>
                                 <div className="img">
                                     <img src={`${assetsPath}/slide${v.key}.jpg`} alt="" />
+                                </div>
+                                <div className="desc" style={{backgroundColor: v.bgColor}}>
+                                    <a href={v.cta} target="_blank">{v.content}</a>
                                 </div>
                             </div>
                         </div>

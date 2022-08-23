@@ -244,6 +244,12 @@ header {
     }
   }
 
+  @include mq(desktop) {
+    position: absolute;
+    right: 0;
+    top: 0;
+  }
+
   .video-bg::after {
     background-image: none;
   }
@@ -771,16 +777,18 @@ section.footer {
   background-size: cover;
   background-position: 50%;
   padding-bottom: 4rem;
+  padding-top: 1rem;
 }
 
 .slider {
-  max-width: 58rem;
+  max-width: 68rem;
   margin: auto;
   .slide {
+    filter: drop-shadow(0px 4px 7px rgba(0, 0, 0, 0.45));
     // max-width: 16rem;
 
     .img {
-      border-radius: 15px;
+      border-radius: 15px 15px 0 0;
       overflow: hidden;
     }
     img {
@@ -793,34 +801,75 @@ section.footer {
     //   grid-template-rows: 1fr 2fr;
     }
     .desc {
-      height: 140px;
+      height: 100px;
       display: flex;
-      padding: 1rem;
-      border-radius: 15px;
-      margin-bottom: 1rem;
+      padding: .7rem;
+      border-radius: 0 0 15px 15px;
+      // margin-bottom: 1rem;
       color: black;
-      border: 1px solid #979797;
+      // border: 1px solid #979797;
+      // border-top: none;
+      border: none;
       justify-content: center;
       text-align: center;
       a {
         font-weight: normal;
         font-size: 100%;
       }
+      p {
+          margin: 0;
+          padding: 0;
+        font-size: 0.875rem;
+        line-height: 1.3;
+        strong  {
+          font-size: 1.125rem;
+        }
+      }
     }
     &.inactive {
       pointer-events: none;
       filter: grayscale(1);
-      opacity: 0.8;
+      opacity: 0.4;
       .desc {
         background: #FD9C42E5 !important;
       }
     }
   }
 
+  .slick-dots {
+    position: relative;
+    display: flex;
+    justify-content: space-evenly;
+    align-items: center;
+    padding-bottom: 2rem;
+    // li, button, button::before {
+    //   width: 10px;
+    //   height: 10px;
+    // }
+    ul {
+      padding: 0;
+      transform: translateY(-3px);
+    }
+    button {
+      transition: all 0.8s ease;
+      background-color: rgba(0, 0, 0, 0.25);
+      border-radius: 50%;
+      &::before {
+        display: none;
+      }
+    }
+    li.slick-active {
+      button {
+        background-color: white;
+      }
+    }
+
+  }
+
 }
 
 .boxed {
-  padding: 1rem 0;
+  padding: 1rem;
   margin: auto;
   max-width: 38rem;
   text-align: center;
