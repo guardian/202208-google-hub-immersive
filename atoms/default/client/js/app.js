@@ -230,7 +230,7 @@ const MainBody = ({children}) => {
         slidesToShow: 4,
         slidesToScroll: 1,
         swipeToSlide: true,
-        // autoplay: true,
+        autoplay: true,
         arrows: false,
         appendDots: dots => (
             <div>
