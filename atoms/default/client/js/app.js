@@ -223,7 +223,8 @@ const MainBody = ({children}) => {
         slidesToShow: 4,
         slidesToScroll: 1,
         swipeToSlide: true,
-        autoPlay: true,
+        autoplay: true,
+        arrows: false,
         responsive: [
             // {
             //   breakpoint: 1024,
@@ -235,7 +236,7 @@ const MainBody = ({children}) => {
             //   }
             // },
             {
-              breakpoint: 600,
+              breakpoint: 940,
               settings: {
                 slidesToShow: 2,
                 slidesToScroll: 2,
@@ -335,6 +336,7 @@ const VideoPlayer = () => {
                 // src: '/assets/video/out.mpd',
                 // type: 'application/dash+xml'
                 // https://stackoverflow.com/questions/29351225/playing-with-video-js-ustream-m3u8-file-streaming
+                // src: `${assetsPath}/video/hbn.mp4`,
                 src: `${assetsPath}/video/hbn-720.m3u8`,
                 type: 'application/x-mpegURL'
               });

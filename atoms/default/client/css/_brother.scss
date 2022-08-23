@@ -793,13 +793,14 @@ section.footer {
     //   grid-template-rows: 1fr 2fr;
     }
     .desc {
-      height: 130px;
+      height: 140px;
       display: flex;
       padding: 1rem;
       border-radius: 15px;
       margin-bottom: 1rem;
       color: black;
       border: 1px solid #979797;
+      justify-content: center;
       text-align: center;
       a {
         font-weight: normal;
