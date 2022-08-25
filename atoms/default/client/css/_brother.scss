@@ -131,12 +131,12 @@ h1, h2 {
   font-family: "Guardian Egyptian Web", serif;
   color: white;
   
+}
+h1 {
   span {
     font-weight: 700;
     font-family: "Guardian Egyptian Web", serif;
   }
-}
-h1 {
   font-size: 30/16 + rem;
   // text-decoration: underline;
   font-weight: 700;
@@ -164,6 +164,15 @@ q {
   }
 }
 
+p {
+  font-family: "Guardian Egyptian Web", serif;
+  span {
+    font-family: "Guardian Egyptian Web", serif;
+  }
+}
+span {
+  font-family: "Guardian Egyptian Web", serif;
+}
 .d-flex {
   display: flex;
   &.d-center {
@@ -194,6 +203,7 @@ q {
 }
 *, p {
   font-family: 'Guardian Egyptian Web', serif;
+  font-weight: 500;
 }
 
 .dark-text {
@@ -291,6 +301,9 @@ header {
     padding: 2rem;
     color: white;
     z-index: 2;
+    p {
+      // margin-bottom: 0;
+    }
     img {
       display: inline-block;
       vertical-align: middle;
@@ -301,7 +314,7 @@ header {
       flex-direction: column;
       align-items: flex-end;
       svg {
-        width: 80px;
+        height: 45px;
       }
     }
   }
@@ -784,6 +797,7 @@ section.footer {
   max-width: 68rem;
   margin: auto;
   .slide {
+    
     filter: drop-shadow(0px 4px 7px rgba(0, 0, 0, 0.45));
     // max-width: 16rem;
 
@@ -797,6 +811,8 @@ section.footer {
     }
     .slide-panel {
       padding: 1rem;
+      max-width: 328px;
+      margin: auto;
     //   display: grid;
     //   grid-template-rows: 1fr 2fr;
     }
@@ -871,7 +887,7 @@ section.footer {
 .boxed {
   padding: 1rem;
   margin: auto;
-  max-width: 38rem;
+  max-width: 48rem;
   text-align: center;
 }
 
@@ -898,4 +914,17 @@ section.footer {
       margin-right: 1rem;
     }
   }
+}
+
+.yt-video {
+  display: flex;
+  justify-content: center;
+}
+
+.no-wrap {
+  white-space: nowrap;
+}
+
+strong .no-wrap {
+  font-weight: bold;
 }

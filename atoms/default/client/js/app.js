@@ -11,7 +11,7 @@ import {ScrollTrigger} from "gsap/ScrollTrigger";
 import Brother from "./Brother";
 import store, { ACTION_SET_SECTIONS, fetchData } from "./store";
 import {SwitchTransition, Transition, TransitionGroup} from "react-transition-group";
-import { LeftIcon, Logo, PlayIcon, RightIcon, ScrollDown, TapIcon} from "./Icons";
+import { GoogleIcon, LeftIcon, Logo, PlayIcon, RightIcon, ScrollDown, TapIcon} from "./Icons";
 import {Provider, useSelector, useDispatch} from "react-redux";
 import { useEffect, useRef, useState } from "preact/hooks";
 import {SmoothProvider} from "react-smooth-scrolling";
@@ -52,6 +52,7 @@ const Loading = () =>
     <FlexContainer className="loading">
         <div style={{width: 300}}>
             <img src={`${assetsPath}/glab_logo.svg`} />
+            
         </div>
     </FlexContainer>
 
@@ -69,7 +70,8 @@ const Header = () => {
                     <div className="client">
                         <p>Paid for by <br />
                             <a href="#" target="_blank">
-                                <img src={`${assetsPath}/google_logo.png`} width="150" />
+                                {/* <img src={`${assetsPath}/google_logo.png`} width="150" /> */}
+                                <GoogleIcon />
                             </a>
                         </p>
                         <div className="about-content" {...setHtml(content.aboutLink)} />
@@ -177,7 +179,9 @@ const MainBody = ({children}) => {
     const store = useSelector(s=>s);
     const refSlider = useRef();
 
-    const slides = [
+    let slidesCta = JSON.parse(content.slides) || [];
+    // console.log(slides)
+    let slides = [
         {
             key: 1,
             content: <div><p><strong>Meaningful change</strong></p></div>,
@@ -186,35 +190,37 @@ const MainBody = ({children}) => {
         },
         {
             key: 2,
-            content:  <div><p><strong>Women save <nobr>women’s lives</nobr></strong><br/>Yarn with Ashlee Donohue and Bronwyn Penrith</p></div>,
+            content:  <div><p><strong>Women save <span className="no-wrap">women’s lives</span></strong><br/>Yarn with Ashlee Donohue and <span className="no-wrap">Bronwyn Penrith</span></p></div>,
             bgColor: '#FBD396',
             cta: ''
         },
         {
             key: 3,
-            content: <div><p><strong>Spark that black joy</strong><br/>Yarn with Jessica Johnson and Jarin Baigent</p></div>,
+            content: <div><p><strong>Spark that black joy</strong><br/>Yarn with Jessica Johnson and <span className="no-wrap">Jarin Baigent</span></p></div>,
             bgColor: '#FD9C42E5',
             cta: ''
         },
         {
             key: 4,
-            content: <div><p><strong>Support is transgenerational</strong><br/>Yarn with Naomi and Jeanni Moran</p></div>,
+            content: <div><p><strong>Support is transgenerational</strong><br/>Yarn with Naomi and <span className="no-wrap">Jeanni Moran</span></p></div>,
             bgColor: '#E9A47DE5',
             cta: ''
         },
         {
             key: 5,
-            content: <div><p><strong>Breaking the chain</strong><br/>Yarn with Heidi Bradshaw and Annette Toomey </p></div>,
+            content: <div><p><strong>Breaking the chain</strong><br/>Yarn with Heidi Bradshaw and <span className="no-wrap">Annette Toomey</span></p></div>,
             bgColor: '#E98A7DE5',
             cta: ''
         },
         {
             key: 6,
-            content: <div><p><strong>Listening, Learning, and Partnering.</strong></p></div>,
+            content: <div><p><strong>Listening, Learning, <span className="no-wrap">and Partnering.</span></strong></p></div>,
             bgColor: '#FE7528E5',
             cta: ''
         },
     ];
+
+    // console.log(JSON.stringify(slides))
 
     const NavButton = ({onClick, icon}) => {
         return (
@@ -279,24 +285,24 @@ const MainBody = ({children}) => {
                 <div className="h-line"></div>
                 <div className="boxed">
                     <h1><span style={{fontSize: '125%'}}>Helpful by nature:</span> <br /> the power of connection through community </h1>
-                    <p>When we care for our community, helping them is a natural extension of who we are. </p>
+                    <p>When we care for our community, helping them is a natural extension of <span className="no-wrap">who we are.</span> </p>
                     <p>Australia’s First Nations women are inspirational leaders from whom we can all learn a lot about community, and the importance of support, mentorship and being helpful - by nature.</p>
 
                     <div className="prompt">
-                        <p><TapIcon/> Tap to listen to yarns with First Nations Women</p>
+                        <p>Tap the carousel below to listen to yarns with First Nations women</p>
                     </div>
                 </div>
                 
                 <div className="slider">
                         <Slider {...settings} ref={refSlider}>
-                    {slides.map(v=>
+                    {slides.map((v, i)=>
                         <div className={`slide ${v.cta ? '': 'inactive'}`}>
                             <div className="slide-panel">
                                 <div className="img">
                                     <img src={`${assetsPath}/slide${v.key}.jpg`} alt="" />
                                 </div>
                                 <div className="desc" style={{backgroundColor: v.bgColor}}>
-                                    <a href={v.cta} target="_blank">{v.content}</a>
+                                    <a href={slidesCta[i].cta} target="_blank" >{v.content}</a>
                                 </div>
                             </div>
                         </div>
@@ -307,14 +313,16 @@ const MainBody = ({children}) => {
                 <div className="h-line"></div>
                 <div className="video-intro">
                     <div className="boxed">
-                        <h2>We should celebrate and support them by listening</h2>
+                        <h2>We should celebrate and support them <span className="no-wrap">by listening</span></h2>
                         <p>These women came together to yarn and share their stories, and the magic of country is ever present.</p>
                         <div className="prompt">
-                            <p><PlayIcon/> Tap to watch more inspirational First Nations women</p>
+                            <p>Tap to watch more inspirational First Nations women</p>
                         </div>
                     </div>
                 </div>
-                <VideoPlayer />
+                <div className="yt-video">
+                <iframe width="740" height="416" src="https://www.youtube.com/embed/JqK0NLZArHI" title="YouTube video player" frameborder="0" allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture" allowfullscreen></iframe>
+                </div>
                 <div className="h-line"></div>
             </div>
 
@@ -354,9 +362,9 @@ const VideoPlayer = () => {
                 // src: '/assets/video/out.mpd',
                 // type: 'application/dash+xml'
                 // https://stackoverflow.com/questions/29351225/playing-with-video-js-ustream-m3u8-file-streaming
-                // src: `${assetsPath}/video/hbn.mp4`,
-                src: `${assetsPath}/video/hbn-720.m3u8`,
-                type: 'application/x-mpegURL'
+                src: `${assetsPath}/video/hbn.mp4`,
+                // src: `${assetsPath}/video/hbn-720.m3u8`,
+                // type: 'application/x-mpegURL'
               });
             // player.src('/assets/video/bethechange.mp4');
             // player.on('ended',(e)=>{
@@ -395,7 +403,7 @@ const Main = () => {
 
 
     useEffect(()=>{
-        dispatch( fetchData('https://interactive.guim.co.uk/docsdata/12b7ABKuCvTUHl0toueUkTe6TLSTBCr1MP4JrjfBR3ug.json') );
+        dispatch( fetchData('https://interactive.guim.co.uk/docsdata/1TdlY8zQuOk_TlqcE0z6RnzrNqXj22ppzAm4PeF1KXzY.json') );
     },[]);
 
 
