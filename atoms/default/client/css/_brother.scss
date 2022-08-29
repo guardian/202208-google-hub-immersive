@@ -254,11 +254,11 @@ header {
     }
   }
 
-  @include mq(desktop) {
-    position: absolute;
-    right: 0;
-    top: 0;
-  }
+  // @include mq(desktop) {
+  //   position: absolute;
+  //   right: 0;
+  //   top: 0;
+  // }
 
   .video-bg::after {
     background-image: none;

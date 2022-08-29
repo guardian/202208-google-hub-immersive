@@ -69,7 +69,7 @@ const Header = () => {
                     
                     <div className="client">
                         <p>Paid for by <br />
-                            <a href="#" target="_blank">
+                            <a href={content.logoLink} target="_blank">
                                 {/* <img src={`${assetsPath}/google_logo.png`} width="150" /> */}
                                 <GoogleIcon />
                             </a>
@@ -296,7 +296,7 @@ const MainBody = ({children}) => {
                 <div className="slider">
                         <Slider {...settings} ref={refSlider}>
                     {slides.map((v, i)=>
-                        <div className={`slide ${v.cta ? '': 'inactive'}`}>
+                        <div className={`slide ${slidesCta[i].cta ? '': 'inactive'}`}>
                             <div className="slide-panel">
                                 <div className="img">
                                     <img src={`${assetsPath}/slide${v.key}.jpg`} alt="" />
